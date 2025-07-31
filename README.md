@@ -92,3 +92,46 @@ npm install
 - ✅ Validation (express-validator)
 - 🛡 Helmet headers
 
+
+## 🧪 API Endpoints
+
+Most endpoints require authentication using a JWT (JSON Web Token) in the request header. Endpoints marked with 🔐 Protected require a valid access token. Endpoints marked with 👑 Admin Protected require the user to have an admin role.
+
+### 👤 User & Authentication Endpoints (`/api/v1/auth` and `/api/v1/users`)
+* `POST /api/v1/auth/register` - Register a new user.
+* `POST /api/v1/auth/login` - User login.
+* `POST /api/v1/auth/logout` - User logout. 🔐 Protected
+* `POST /api/v1/auth/refreshToken` - Refresh access token.
+* `POST /api/v1/users/changePassword` - Change current user's password. 🔐 Protected
+* `GET /api/v1/users/getCurrentUser` - Get current user details. 🔐 Protected
+* `PUT /api/v1/users/updateProfile` - Update current user's profile details. 🔐 Protected
+
+### 📦 Product Endpoints (`/api/v1/products`)
+* `POST /api/v1/products/createProduct` - Create a new product. 🔐 Protected, 👑 Admin Protected, ⬆️ File Upload (image)
+* `GET /api/v1/products/getProductById/:productId` - Get product details by ID.
+* `PUT /api/v1/products/updateProduct/:productId` - Update product details by ID. 🔐 Protected, 👑 Admin Protected
+* `DELETE /api/v1/products/deleteProduct/:productId` - Delete a product by ID. 🔐 Protected, 👑 Admin Protected
+* `GET /api/v1/products/getAllProducts` - Get all products.
+
+### 🏷️ Category Endpoints (`/api/v1/categories`)
+* `POST /api/v1/categories/createCategory` - Create a new category. 🔐 Protected, 👑 Admin Protected
+* `GET /api/v1/categories/getAllCategories` - Get all categories. 🔐 Protected
+* `PUT /api/v1/categories/updateCategory/:categoryId` - Update category details by ID. 🔐 Protected, 👑 Admin Protected
+* `DELETE /api/v1/categories/deleteCategory/:categoryId` - Delete a category by ID. 🔐 Protected, 👑 Admin Protected
+
+### 🛒 Cart Endpoints (`/api/v1/cart`)
+* `POST /api/v1/cart/addToCart` - Add a product to the current user's cart. 🔐 Protected
+* `GET /api/v1/cart/getCart` - Get the current user's cart. 🔐 Protected
+* `DELETE /api/v1/cart/removeFromCart/:productId` - Remove a product from the current user's cart. 🔐 Protected
+* `DELETE /api/v1/cart/clear` - Clear the current user's cart. 🔐 Protected
+
+### 🛍️ Order Endpoints (`/api/v1/orders`)
+* `POST /api/v1/orders/placeOrder` - Place a new order. 🔐 Protected
+* `GET /api/v1/orders/getOrders` - Get all orders for the current user. 🔐 Protected
+* `GET /api/v1/orders/getAllOrders` - Get all orders (for admin). 🔐 Protected, 👑 Admin Protected
+* `PUT /api/v1/orders/updateOrderStatus/:orderId` - Update the status of an order by ID. 🔐 Protected, 👑 Admin Protected
+
+### ⭐ Review Endpoints (`/api/v1/reviews`)
+* `POST /api/v1/reviews/addOrUpdateReview/:productId` - Add or update a review for a product. 🔐 Protected
+* `GET /api/v1/reviews/getProductReview/:productId` - Get all reviews for a specific product. 🔐 Protected
+* `DELETE /api/v1/reviews/deleteReview/:reviewId` - Delete a review by ID. 🔐 Protected
